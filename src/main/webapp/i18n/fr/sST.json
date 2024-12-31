@@ -1,0 +1,24 @@
+{
+  "pfeApp": {
+    "sST": {
+      "home": {
+        "title": "SSTS",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau SST",
+        "createOrEditLabel": "Créer ou éditer un SST",
+        "notFound": "Aucun SST trouvé"
+      },
+      "created": "Un nouveau SST a été créé avec l'identifiant {{ param }}",
+      "updated": "Le SST avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le SST avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le SST {{ id }} ?"
+      },
+      "detail": {
+        "title": "SST"
+      },
+      "id": "ID",
+      "description": "Description"
+    }
+  }
+}

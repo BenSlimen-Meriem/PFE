@@ -1,0 +1,29 @@
+{
+  "pfeApp": {
+    "vehicule": {
+      "home": {
+        "title": "Vehicules",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Vehicule",
+        "createOrEditLabel": "Créer ou éditer un Vehicule",
+        "notFound": "Aucun Vehicule trouvé"
+      },
+      "created": "Un nouveau Vehicule a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Vehicule avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Vehicule avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Vehicule {{ id }} ?"
+      },
+      "detail": {
+        "title": "Vehicule"
+      },
+      "id": "ID",
+      "model": "Model",
+      "numeroCarteGrise": "Numero Carte Grise",
+      "numSerie": "Num Serie",
+      "statut": "Statut",
+      "type": "Type",
+      "workOrder": "Work Order"
+    }
+  }
+}

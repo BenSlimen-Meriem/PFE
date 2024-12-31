@@ -1,0 +1,29 @@
+{
+  "annotations": {
+    "changelogDate": "20241231093440"
+  },
+  "applications": ["pfe"],
+  "fields": [
+    {
+      "fieldName": "fraisSession",
+      "fieldType": "Double",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "article",
+      "fieldType": "String"
+    }
+  ],
+  "name": "OrdreTravailClient",
+  "relationships": [
+    {
+      "otherEntityName": "workOrder",
+      "otherEntityRelationshipName": "ordreTravailClient",
+      "relationshipName": "workOrder",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

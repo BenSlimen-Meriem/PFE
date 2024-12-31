@@ -1,0 +1,24 @@
+{
+  "pfeApp": {
+    "sST": {
+      "home": {
+        "title": "SSTS",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new SST",
+        "createOrEditLabel": "Create or edit a SST",
+        "notFound": "No SSTS found"
+      },
+      "created": "A new SST is created with identifier {{ param }}",
+      "updated": "A SST is updated with identifier {{ param }}",
+      "deleted": "A SST is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete SST {{ id }}?"
+      },
+      "detail": {
+        "title": "SST"
+      },
+      "id": "ID",
+      "description": "Description"
+    }
+  }
+}

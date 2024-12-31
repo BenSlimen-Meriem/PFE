@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20241231093640"
+  },
+  "applications": ["pfe"],
+  "fields": [
+    {
+      "fieldName": "designation",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "prix",
+      "fieldType": "Double"
+    }
+  ],
+  "name": "Article",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "workOrder",
+      "otherEntityRelationshipName": "article",
+      "relationshipName": "workOrder",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

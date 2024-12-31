@@ -1,0 +1,66 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (departement(); as departementRef) {
+      <div>
+        <h2 data-cy="departementDetailsHeading"><span jhiTranslate="pfeApp.departement.detail.title">Departement</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ departementRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.departement.nom">Nom</span></dt>
+          <dd>
+            <span>{{ departementRef.nom }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.departement.description">Description</span></dt>
+          <dd>
+            <span>{{ departementRef.description }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.departement.email">Email</span></dt>
+          <dd>
+            <span>{{ departementRef.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.departement.telephone">Telephone</span></dt>
+          <dd>
+            <span>{{ departementRef.telephone }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.departement.employeeCount">Employee Count</span></dt>
+          <dd>
+            <span>{{ departementRef.employeeCount }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.departement.manager">Manager</span></dt>
+          <dd>
+            @if (departement()!.manager) {
+              <div>
+                <a [routerLink]="['/employee', departement()!.manager?.id, 'view']">{{ departementRef.manager?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="pfeApp.departement.societe">Societe</span></dt>
+          <dd>
+            @if (departement()!.societe) {
+              <div>
+                <a [routerLink]="['/societe', departement()!.societe?.id, 'view']">{{ departementRef.societe?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/departement', departementRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

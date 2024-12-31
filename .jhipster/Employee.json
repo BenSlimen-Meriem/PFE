@@ -1,0 +1,44 @@
+{
+  "annotations": {
+    "changelogDate": "20241231093040"
+  },
+  "applications": ["pfe"],
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "qualification",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Employee",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "societe",
+      "otherEntityRelationshipName": "employee",
+      "relationshipName": "societe",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "departement",
+      "otherEntityRelationshipName": "employee",
+      "relationshipName": "departement",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "workOrder",
+      "otherEntityRelationshipName": "employee",
+      "relationshipName": "workOrder",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

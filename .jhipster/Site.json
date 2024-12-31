@@ -1,0 +1,36 @@
+{
+  "annotations": {
+    "changelogDate": "20241231092740"
+  },
+  "applications": ["pfe"],
+  "fields": [
+    {
+      "fieldName": "nom",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Site",
+  "relationships": [
+    {
+      "otherEntityName": "workOrder",
+      "otherEntityRelationshipName": "site",
+      "relationshipName": "workOrder",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "societe",
+      "otherEntityRelationshipName": "site",
+      "relationshipName": "societe",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

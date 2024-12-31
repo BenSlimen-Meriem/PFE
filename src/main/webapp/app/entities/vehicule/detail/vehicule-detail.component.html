@@ -1,0 +1,63 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (vehicule(); as vehiculeRef) {
+      <div>
+        <h2 data-cy="vehiculeDetailsHeading"><span jhiTranslate="pfeApp.vehicule.detail.title">Vehicule</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ vehiculeRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.vehicule.model">Model</span></dt>
+          <dd>
+            <span>{{ vehiculeRef.model }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.vehicule.numeroCarteGrise">Numero Carte Grise</span></dt>
+          <dd>
+            <span>{{ vehiculeRef.numeroCarteGrise }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.vehicule.numSerie">Num Serie</span></dt>
+          <dd>
+            <span>{{ vehiculeRef.numSerie }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.vehicule.statut">Statut</span></dt>
+          <dd>
+            <span [jhiTranslate]="'pfeApp.StatutVehicule.' + (vehiculeRef.statut ?? 'null')">{{
+              { null: '', DISPONIBLE: 'DISPONIBLE', EN_MISSION: 'EN_MISSION', EN_MAINTENANCE: 'EN_MAINTENANCE' }[
+                vehiculeRef.statut ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.vehicule.type">Type</span></dt>
+          <dd>
+            <span>{{ vehiculeRef.type }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.vehicule.workOrder">Work Order</span></dt>
+          <dd>
+            @for (workOrder of vehiculeRef.workOrders; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/work-order', workOrder.id, 'view']">{{ workOrder?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/vehicule', vehiculeRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

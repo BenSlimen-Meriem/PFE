@@ -1,0 +1,46 @@
+{
+  "annotations": {
+    "changelogDate": "20241231093540"
+  },
+  "applications": ["pfe"],
+  "fields": [
+    {
+      "fieldName": "model",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numeroCarteGrise",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "numSerie",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "StatutVehicule",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "DISPONIBLE,EN_MISSION,EN_MAINTENANCE"
+    },
+    {
+      "fieldName": "type",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Vehicule",
+  "relationships": [
+    {
+      "otherEntityName": "workOrder",
+      "otherEntityRelationshipName": "vehicule",
+      "relationshipName": "workOrder",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

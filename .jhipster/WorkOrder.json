@@ -1,0 +1,120 @@
+{
+  "annotations": {
+    "changelogDate": "20241231092940"
+  },
+  "applications": ["pfe"],
+  "fields": [
+    {
+      "fieldName": "demandeur",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "nature",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "motifDescription",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "dateHeureDebutPrevisionnelle",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "dateHeureFinPrevisionnelle",
+      "fieldType": "Instant",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "vehicule",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "materielUtilise",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "article",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "membreMission",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "responsableMission",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "statut",
+      "fieldType": "StatutMission",
+      "fieldValidateRules": ["required"],
+      "fieldValues": "BROUILLON,EN_COURS,TERMINE,ANNULE"
+    }
+  ],
+  "name": "WorkOrder",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "affaire",
+      "otherEntityRelationshipName": "workOrder",
+      "relationshipName": "affaire",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "motif",
+      "otherEntityRelationshipName": "workOrder",
+      "relationshipName": "motif",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "employee",
+      "otherEntityRelationshipName": "workOrder",
+      "relationshipName": "employee",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "article",
+      "otherEntityRelationshipName": "workOrder",
+      "relationshipName": "article",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "vehicule",
+      "otherEntityRelationshipName": "workOrder",
+      "relationshipName": "vehicule",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-many"
+    },
+    {
+      "otherEntityName": "site",
+      "otherEntityRelationshipName": "workOrder",
+      "relationshipName": "site",
+      "relationshipSide": "right",
+      "relationshipType": "many-to-one"
+    },
+    {
+      "otherEntityName": "ordreTravailClient",
+      "otherEntityRelationshipName": "workOrder",
+      "relationshipName": "ordreTravailClient",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "ordreFacturation",
+      "otherEntityRelationshipName": "workOrder",
+      "relationshipName": "ordreFacturation",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

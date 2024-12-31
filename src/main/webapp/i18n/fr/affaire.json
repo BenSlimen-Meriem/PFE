@@ -1,0 +1,27 @@
+{
+  "pfeApp": {
+    "affaire": {
+      "home": {
+        "title": "Affaires",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Affaire",
+        "createOrEditLabel": "Créer ou éditer un Affaire",
+        "notFound": "Aucun Affaire trouvé"
+      },
+      "created": "Un nouveau Affaire a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Affaire avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Affaire avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Affaire {{ id }} ?"
+      },
+      "detail": {
+        "title": "Affaire"
+      },
+      "id": "ID",
+      "reference": "Reference",
+      "description": "Description",
+      "client": "Client",
+      "workOrder": "Work Order"
+    }
+  }
+}

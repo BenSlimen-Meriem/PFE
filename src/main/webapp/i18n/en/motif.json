@@ -1,0 +1,28 @@
+{
+  "pfeApp": {
+    "motif": {
+      "home": {
+        "title": "Motifs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Motif",
+        "createOrEditLabel": "Create or edit a Motif",
+        "notFound": "No Motifs found"
+      },
+      "created": "A new Motif is created with identifier {{ param }}",
+      "updated": "A Motif is updated with identifier {{ param }}",
+      "deleted": "A Motif is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Motif {{ id }}?"
+      },
+      "detail": {
+        "title": "Motif"
+      },
+      "id": "ID",
+      "code": "Code",
+      "libelle": "Libelle",
+      "description": "Description",
+      "priorite": "Priorite",
+      "workOrder": "Work Order"
+    }
+  }
+}

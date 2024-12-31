@@ -1,0 +1,80 @@
+{
+  "annotations": {
+    "changelogDate": "20241231092340"
+  },
+  "applications": ["pfe"],
+  "fields": [
+    {
+      "fieldName": "raisonSociale",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "identifiantUnique",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "registreCommerce",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codeArticle",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "adresse",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "codePostal",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "pays",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "telephone",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "fax",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "email",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "agence",
+      "fieldType": "String"
+    }
+  ],
+  "name": "Societe",
+  "relationships": [
+    {
+      "otherEntityName": "site",
+      "otherEntityRelationshipName": "societe",
+      "relationshipName": "site",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "departement",
+      "otherEntityRelationshipName": "societe",
+      "relationshipName": "departement",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "employee",
+      "otherEntityRelationshipName": "societe",
+      "relationshipName": "employee",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

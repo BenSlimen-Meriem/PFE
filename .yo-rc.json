@@ -1,0 +1,35 @@
+{
+  "generator-jhipster": {
+    "authenticationType": "jwt",
+    "baseName": "pfe",
+    "buildTool": "gradle",
+    "clientFramework": "angular",
+    "enableTranslation": true,
+    "entities": [
+      "Societe",
+      "Departement",
+      "Client",
+      "Contact",
+      "Site",
+      "Affaire",
+      "WorkOrder",
+      "Employee",
+      "Executeur",
+      "Planificateur",
+      "GestionCout",
+      "OrdreTravailClient",
+      "Vehicule",
+      "Article",
+      "Motif",
+      "OrdreFacturation",
+      "SST"
+    ],
+    "jhipsterVersion": "8.8.0",
+    "jwtSecretKey": "ZDQ1NWJiYTg3MTE5NDdiNzFiYjU5ODEyMTdjOWM1Njk2NGU5YTNlODFmNDhjY2MzMGMwZTEyODlmMjVmZmY3MzViMmQ1NzM2ZjZhNTc1NWExYzdmYTc2Y2QzZTIxYjE3MjkyOGJmN2RkZTU5MmZlOWFlZTk1MzA2Yzc0M2UzZDc=",
+    "languages": ["fr", "en"],
+    "lastLiquibaseTimestamp": 1735637980000,
+    "nativeLanguage": "fr",
+    "packageName": "com.jhipster.demo.pfe",
+    "prodDatabaseType": "mysql"
+  }
+}

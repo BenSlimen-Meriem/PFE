@@ -1,0 +1,54 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (contact(); as contactRef) {
+      <div>
+        <h2 data-cy="contactDetailsHeading"><span jhiTranslate="pfeApp.contact.detail.title">Contact</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ contactRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.contact.nom">Nom</span></dt>
+          <dd>
+            <span>{{ contactRef.nom }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.contact.prenom">Prenom</span></dt>
+          <dd>
+            <span>{{ contactRef.prenom }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.contact.email">Email</span></dt>
+          <dd>
+            <span>{{ contactRef.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.contact.telephone">Telephone</span></dt>
+          <dd>
+            <span>{{ contactRef.telephone }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.contact.client">Client</span></dt>
+          <dd>
+            @if (contact()!.client) {
+              <div>
+                <a [routerLink]="['/client', contact()!.client?.id, 'view']">{{ contactRef.client?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/contact', contactRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20241231093740"
+  },
+  "applications": ["pfe"],
+  "fields": [
+    {
+      "fieldName": "code",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "libelle",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "priorite",
+      "fieldType": "Integer"
+    }
+  ],
+  "name": "Motif",
+  "relationships": [
+    {
+      "otherEntityName": "workOrder",
+      "otherEntityRelationshipName": "motif",
+      "relationshipName": "workOrder",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

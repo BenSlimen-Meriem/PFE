@@ -1,0 +1,16 @@
+{
+  "annotations": {
+    "changelogDate": "20241231093940"
+  },
+  "applications": ["pfe"],
+  "fields": [
+    {
+      "fieldName": "description",
+      "fieldType": "String"
+    }
+  ],
+  "name": "SST",
+  "relationships": [],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

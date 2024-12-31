@@ -1,0 +1,38 @@
+{
+  "annotations": {
+    "changelogDate": "20241231092540"
+  },
+  "applications": ["pfe"],
+  "fields": [
+    {
+      "fieldName": "raisonSociale",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "identifiantUnique",
+      "fieldType": "String",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "Client",
+  "pagination": "pagination",
+  "relationships": [
+    {
+      "otherEntityName": "contact",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "contact",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-many"
+    },
+    {
+      "otherEntityName": "affaire",
+      "otherEntityRelationshipName": "client",
+      "relationshipName": "affaire",
+      "relationshipSide": "right",
+      "relationshipType": "one-to-many"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

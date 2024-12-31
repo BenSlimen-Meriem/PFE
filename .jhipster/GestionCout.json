@@ -1,0 +1,30 @@
+{
+  "annotations": {
+    "changelogDate": "20241231093340"
+  },
+  "applications": ["pfe"],
+  "fields": [
+    {
+      "fieldName": "time",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "cout",
+      "fieldType": "Integer",
+      "fieldValidateRules": ["required"]
+    }
+  ],
+  "name": "GestionCout",
+  "relationships": [
+    {
+      "otherEntityName": "planificateur",
+      "otherEntityRelationshipName": "gestionCout",
+      "relationshipName": "planificateur",
+      "relationshipSide": "left",
+      "relationshipType": "one-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

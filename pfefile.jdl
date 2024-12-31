@@ -1,0 +1,171 @@
+application {
+  config {
+    baseName pfe
+    packageName com.jhipster.demo.pfe
+    authenticationType jwt
+    prodDatabaseType mysql
+    buildTool gradle
+    clientFramework angular
+    enableTranslation true
+    nativeLanguage fr
+    languages [en, fr]
+  }
+  entities *
+}
+
+entity Societe {
+    raisonSociale String required
+    identifiantUnique String required
+    registreCommerce String
+    codeArticle String
+    adresse String
+    codePostal String
+    pays String
+    telephone String
+    fax String
+    email String
+    agence String
+}
+
+entity Departement {
+    nom String required
+    description String required
+    email String required
+    telephone String required
+    employeeCount Integer required
+}
+
+entity Client {
+    raisonSociale String required
+    identifiantUnique String required
+}
+
+entity Contact {
+    nom String required
+    prenom String required
+    email String required
+    telephone String required
+}
+
+entity Site {
+    nom String required
+    adresse String
+}
+
+entity Affaire {
+    reference String required
+    description String
+}
+
+entity WorkOrder {
+    demandeur String required
+    nature String required
+    motifDescription String
+    dateHeureDebutPrevisionnelle Instant required
+    dateHeureFinPrevisionnelle Instant required
+    vehicule String
+    materielUtilise String
+    article String
+    membreMission String
+    responsableMission String
+    statut StatutMission required
+}
+
+entity Employee {
+    nom String required
+    qualification String
+}
+
+entity Executeur {
+    nom String required
+    niveauExpertise String required
+    disponibilite Boolean required
+}
+
+entity Planificateur {
+    nom String required
+    niveauExpertise String required
+    disponibilite Boolean required
+}
+
+entity GestionCout {
+    time Integer required
+    cout Integer required
+}
+
+entity OrdreTravailClient {
+    fraisSession Double required
+    article String
+}
+
+entity Vehicule {
+    model String required
+    numeroCarteGrise String required
+    numSerie String required
+    statut StatutVehicule required
+    type String required
+}
+
+entity Article {
+    designation String required
+    prix Double
+}
+
+entity Motif {
+    code String required
+    libelle String required
+    description String
+    priorite Integer
+}
+
+entity OrdreFacturation {
+    date LocalDate required
+    bonDeCommande String
+    facture String
+}
+
+entity SST {
+    description String
+}
+
+enum StatutMission {
+    BROUILLON, EN_COURS, TERMINE, ANNULE
+}
+
+enum StatutVehicule {
+    DISPONIBLE, EN_MISSION, EN_MAINTENANCE
+}
+
+relationship OneToMany {
+    Client to Contact
+    Societe to Site
+    Site to WorkOrder
+    Societe to Departement
+    Departement to Employee
+}
+
+relationship ManyToOne {
+    Affaire to Client
+    WorkOrder to Affaire
+    Employee to Societe
+    OrdreTravailClient to WorkOrder
+    WorkOrder to Motif
+    OrdreFacturation to WorkOrder
+    Departement{manager} to Employee
+}
+
+relationship ManyToMany {
+    WorkOrder to Employee
+    WorkOrder to Article
+    WorkOrder to Vehicule
+}
+
+relationship OneToOne {
+    Executeur{employee} to Employee
+    Planificateur{employee} to Employee
+    GestionCout to Planificateur
+}
+
+
+service * with serviceClass
+paginate WorkOrder, Employee, Departement, Client, Article with pagination

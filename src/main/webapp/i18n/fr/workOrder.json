@@ -1,0 +1,42 @@
+{
+  "pfeApp": {
+    "workOrder": {
+      "home": {
+        "title": "WorkOrders",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Work Order",
+        "createOrEditLabel": "Créer ou éditer un Work Order",
+        "notFound": "Aucun Work Order trouvé"
+      },
+      "created": "Un nouveau Work Order a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Work Order avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Work Order avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Work Order {{ id }} ?"
+      },
+      "detail": {
+        "title": "Work Order"
+      },
+      "id": "ID",
+      "demandeur": "Demandeur",
+      "nature": "Nature",
+      "motifDescription": "Motif Description",
+      "dateHeureDebutPrevisionnelle": "Date Heure Debut Previsionnelle",
+      "dateHeureFinPrevisionnelle": "Date Heure Fin Previsionnelle",
+      "vehicule": "Vehicule",
+      "materielUtilise": "Materiel Utilise",
+      "article": "Article",
+      "membreMission": "Membre Mission",
+      "responsableMission": "Responsable Mission",
+      "statut": "Statut",
+      "affaire": "Affaire",
+      "motif": "Motif",
+      "employee": "Employee",
+      "article": "Article",
+      "vehicule": "Vehicule",
+      "site": "Site",
+      "ordreTravailClient": "Ordre Travail Client",
+      "ordreFacturation": "Ordre Facturation"
+    }
+  }
+}

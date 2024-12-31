@@ -1,0 +1,63 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (employee(); as employeeRef) {
+      <div>
+        <h2 data-cy="employeeDetailsHeading"><span jhiTranslate="pfeApp.employee.detail.title">Employee</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ employeeRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.employee.nom">Nom</span></dt>
+          <dd>
+            <span>{{ employeeRef.nom }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.employee.qualification">Qualification</span></dt>
+          <dd>
+            <span>{{ employeeRef.qualification }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.employee.societe">Societe</span></dt>
+          <dd>
+            @if (employee()!.societe) {
+              <div>
+                <a [routerLink]="['/societe', employee()!.societe?.id, 'view']">{{ employeeRef.societe?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="pfeApp.employee.departement">Departement</span></dt>
+          <dd>
+            @if (employee()!.departement) {
+              <div>
+                <a [routerLink]="['/departement', employee()!.departement?.id, 'view']">{{ employeeRef.departement?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="pfeApp.employee.workOrder">Work Order</span></dt>
+          <dd>
+            @for (workOrder of employeeRef.workOrders; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/work-order', workOrder.id, 'view']">{{ workOrder?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/employee', employeeRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

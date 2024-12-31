@@ -1,0 +1,292 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-work-order-heading" data-cy="WorkOrderCreateUpdateHeading" jhiTranslate="pfeApp.workOrder.home.createOrEditLabel">
+        Créer ou éditer un Work Order
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="pfeApp.workOrder.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let demandeurRef = editForm.get('demandeur')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_demandeur" jhiTranslate="pfeApp.workOrder.demandeur">Demandeur</label>
+          <input type="text" class="form-control" name="demandeur" id="field_demandeur" data-cy="demandeur" formControlName="demandeur" />
+          @if (demandeurRef.invalid && (demandeurRef.dirty || demandeurRef.touched)) {
+            <div>
+              @if (editForm.get('demandeur')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let natureRef = editForm.get('nature')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_nature" jhiTranslate="pfeApp.workOrder.nature">Nature</label>
+          <input type="text" class="form-control" name="nature" id="field_nature" data-cy="nature" formControlName="nature" />
+          @if (natureRef.invalid && (natureRef.dirty || natureRef.touched)) {
+            <div>
+              @if (editForm.get('nature')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_motifDescription" jhiTranslate="pfeApp.workOrder.motifDescription">Motif Description</label>
+          <input
+            type="text"
+            class="form-control"
+            name="motifDescription"
+            id="field_motifDescription"
+            data-cy="motifDescription"
+            formControlName="motifDescription"
+          />
+        </div>
+
+        @let dateHeureDebutPrevisionnelleRef = editForm.get('dateHeureDebutPrevisionnelle')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_dateHeureDebutPrevisionnelle" jhiTranslate="pfeApp.workOrder.dateHeureDebutPrevisionnelle"
+            >Date Heure Debut Previsionnelle</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateHeureDebutPrevisionnelle"
+              data-cy="dateHeureDebutPrevisionnelle"
+              type="datetime-local"
+              class="form-control"
+              name="dateHeureDebutPrevisionnelle"
+              formControlName="dateHeureDebutPrevisionnelle"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (
+            dateHeureDebutPrevisionnelleRef.invalid && (dateHeureDebutPrevisionnelleRef.dirty || dateHeureDebutPrevisionnelleRef.touched)
+          ) {
+            <div>
+              @if (editForm.get('dateHeureDebutPrevisionnelle')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('dateHeureDebutPrevisionnelle')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >Ce champ doit être une date et une heure.</small
+              >
+            </div>
+          }
+        </div>
+
+        @let dateHeureFinPrevisionnelleRef = editForm.get('dateHeureFinPrevisionnelle')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_dateHeureFinPrevisionnelle" jhiTranslate="pfeApp.workOrder.dateHeureFinPrevisionnelle"
+            >Date Heure Fin Previsionnelle</label
+          >
+          <div class="d-flex">
+            <input
+              id="field_dateHeureFinPrevisionnelle"
+              data-cy="dateHeureFinPrevisionnelle"
+              type="datetime-local"
+              class="form-control"
+              name="dateHeureFinPrevisionnelle"
+              formControlName="dateHeureFinPrevisionnelle"
+              placeholder="YYYY-MM-DD HH:mm"
+            />
+          </div>
+          @if (dateHeureFinPrevisionnelleRef.invalid && (dateHeureFinPrevisionnelleRef.dirty || dateHeureFinPrevisionnelleRef.touched)) {
+            <div>
+              @if (editForm.get('dateHeureFinPrevisionnelle')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+              <small
+                class="form-text text-danger"
+                [hidden]="!editForm.get('dateHeureFinPrevisionnelle')?.errors?.datetimelocal"
+                jhiTranslate="entity.validation.datetimelocal"
+                >Ce champ doit être une date et une heure.</small
+              >
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_vehicule" jhiTranslate="pfeApp.workOrder.vehicule">Vehicule</label>
+          <input type="text" class="form-control" name="vehicule" id="field_vehicule" data-cy="vehicule" formControlName="vehicule" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_materielUtilise" jhiTranslate="pfeApp.workOrder.materielUtilise">Materiel Utilise</label>
+          <input
+            type="text"
+            class="form-control"
+            name="materielUtilise"
+            id="field_materielUtilise"
+            data-cy="materielUtilise"
+            formControlName="materielUtilise"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_article" jhiTranslate="pfeApp.workOrder.article">Article</label>
+          <input type="text" class="form-control" name="article" id="field_article" data-cy="article" formControlName="article" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_membreMission" jhiTranslate="pfeApp.workOrder.membreMission">Membre Mission</label>
+          <input
+            type="text"
+            class="form-control"
+            name="membreMission"
+            id="field_membreMission"
+            data-cy="membreMission"
+            formControlName="membreMission"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_responsableMission" jhiTranslate="pfeApp.workOrder.responsableMission"
+            >Responsable Mission</label
+          >
+          <input
+            type="text"
+            class="form-control"
+            name="responsableMission"
+            id="field_responsableMission"
+            data-cy="responsableMission"
+            formControlName="responsableMission"
+          />
+        </div>
+
+        @let statutRef = editForm.get('statut')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_statut" jhiTranslate="pfeApp.workOrder.statut">Statut</label>
+          <select class="form-control" name="statut" formControlName="statut" id="field_statut" data-cy="statut">
+            <option [ngValue]="null">{{ 'pfeApp.StatutMission.null' | translate }}</option>
+            @for (statutMission of statutMissionValues; track $index) {
+              <option [value]="statutMission">{{ 'pfeApp.StatutMission.' + statutMission | translate }}</option>
+            }
+          </select>
+          @if (statutRef.invalid && (statutRef.dirty || statutRef.touched)) {
+            <div>
+              @if (editForm.get('statut')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_affaire" jhiTranslate="pfeApp.workOrder.affaire">Affaire</label>
+          <select
+            class="form-control"
+            id="field_affaire"
+            data-cy="affaire"
+            name="affaire"
+            formControlName="affaire"
+            [compareWith]="compareAffaire"
+          >
+            <option [ngValue]="null"></option>
+            @for (affaireOption of affairesSharedCollection; track $index) {
+              <option [ngValue]="affaireOption">{{ affaireOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_motif" jhiTranslate="pfeApp.workOrder.motif">Motif</label>
+          <select class="form-control" id="field_motif" data-cy="motif" name="motif" formControlName="motif" [compareWith]="compareMotif">
+            <option [ngValue]="null"></option>
+            @for (motifOption of motifsSharedCollection; track $index) {
+              <option [ngValue]="motifOption">{{ motifOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="field_employees" jhiTranslate="pfeApp.workOrder.employee">Employee</label>
+          <select
+            class="form-control"
+            id="field_employees"
+            data-cy="employee"
+            multiple
+            name="employees"
+            formControlName="employees"
+            [compareWith]="compareEmployee"
+          >
+            @for (employeeOption of employeesSharedCollection; track $index) {
+              <option [ngValue]="employeeOption">{{ employeeOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="field_articles" jhiTranslate="pfeApp.workOrder.article">Article</label>
+          <select
+            class="form-control"
+            id="field_articles"
+            data-cy="article"
+            multiple
+            name="articles"
+            formControlName="articles"
+            [compareWith]="compareArticle"
+          >
+            @for (articleOption of articlesSharedCollection; track $index) {
+              <option [ngValue]="articleOption">{{ articleOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label for="field_vehicules" jhiTranslate="pfeApp.workOrder.vehicule">Vehicule</label>
+          <select
+            class="form-control"
+            id="field_vehicules"
+            data-cy="vehicule"
+            multiple
+            name="vehicules"
+            formControlName="vehicules"
+            [compareWith]="compareVehicule"
+          >
+            @for (vehiculeOption of vehiculesSharedCollection; track $index) {
+              <option [ngValue]="vehiculeOption">{{ vehiculeOption.id }}</option>
+            }
+          </select>
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_site" jhiTranslate="pfeApp.workOrder.site">Site</label>
+          <select class="form-control" id="field_site" data-cy="site" name="site" formControlName="site" [compareWith]="compareSite">
+            <option [ngValue]="null"></option>
+            @for (siteOption of sitesSharedCollection; track $index) {
+              <option [ngValue]="siteOption">{{ siteOption.id }}</option>
+            }
+          </select>
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,27 @@
+{
+  "pfeApp": {
+    "executeur": {
+      "home": {
+        "title": "Executeurs",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Executeur",
+        "createOrEditLabel": "Create or edit a Executeur",
+        "notFound": "No Executeurs found"
+      },
+      "created": "A new Executeur is created with identifier {{ param }}",
+      "updated": "A Executeur is updated with identifier {{ param }}",
+      "deleted": "A Executeur is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Executeur {{ id }}?"
+      },
+      "detail": {
+        "title": "Executeur"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "niveauExpertise": "Niveau Expertise",
+      "disponibilite": "Disponibilite",
+      "employee": "Employee"
+    }
+  }
+}

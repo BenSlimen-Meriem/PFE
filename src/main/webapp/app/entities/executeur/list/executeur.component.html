@@ -1,0 +1,113 @@
+<div>
+  <h2 id="page-heading" data-cy="ExecuteurHeading">
+    <span jhiTranslate="pfeApp.executeur.home.title">Executeurs</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="pfeApp.executeur.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-executeur"
+        [routerLink]="['/executeur/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="pfeApp.executeur.home.createLabel">Créer un nouveau Executeur</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (executeurs().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="pfeApp.executeur.home.notFound">Aucun Executeur trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="nom">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.executeur.nom">Nom</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="niveauExpertise">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.executeur.niveauExpertise">Niveau Expertise</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="disponibilite">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.executeur.disponibilite">Disponibilite</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="employee.id">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.executeur.employee">Employee</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (executeur of executeurs(); track trackId(executeur)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/executeur', executeur.id, 'view']">{{ executeur.id }}</a>
+              </td>
+              <td>{{ executeur.nom }}</td>
+              <td>{{ executeur.niveauExpertise }}</td>
+              <td>{{ executeur.disponibilite }}</td>
+              <td>
+                @if (executeur.employee) {
+                  <div>
+                    <a [routerLink]="['/employee', executeur.employee.id, 'view']">{{ executeur.employee.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/executeur', executeur.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/executeur', executeur.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(executeur)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

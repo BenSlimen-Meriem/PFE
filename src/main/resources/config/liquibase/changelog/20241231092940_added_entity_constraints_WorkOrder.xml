@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd
+                        http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+    <!--
+        Added the constraints for entity WorkOrder.
+    -->
+    <changeSet id="20241231092940-2" author="jhipster">
+
+        <addForeignKeyConstraint baseColumnNames="affaire_id"
+                                 baseTableName="work_order"
+                                 constraintName="fk_work_order__affaire_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="affaire"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="motif_id"
+                                 baseTableName="work_order"
+                                 constraintName="fk_work_order__motif_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="motif"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="work_order_id"
+                                 baseTableName="rel_work_order__employee"
+                                 constraintName="fk_rel_work_order__employee__work_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="work_order"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="employee_id"
+                                 baseTableName="rel_work_order__employee"
+                                 constraintName="fk_rel_work_order__employee__employee_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="employee"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="work_order_id"
+                                 baseTableName="rel_work_order__article"
+                                 constraintName="fk_rel_work_order__article__work_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="work_order"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="article_id"
+                                 baseTableName="rel_work_order__article"
+                                 constraintName="fk_rel_work_order__article__article_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="article"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="work_order_id"
+                                 baseTableName="rel_work_order__vehicule"
+                                 constraintName="fk_rel_work_order__vehicule__work_order_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="work_order"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="vehicule_id"
+                                 baseTableName="rel_work_order__vehicule"
+                                 constraintName="fk_rel_work_order__vehicule__vehicule_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="vehicule"
+                                 />
+
+        <addForeignKeyConstraint baseColumnNames="site_id"
+                                 baseTableName="work_order"
+                                 constraintName="fk_work_order__site_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="site"
+                                 />
+    </changeSet>
+</databaseChangeLog>

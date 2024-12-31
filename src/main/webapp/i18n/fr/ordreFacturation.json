@@ -1,0 +1,27 @@
+{
+  "pfeApp": {
+    "ordreFacturation": {
+      "home": {
+        "title": "OrdreFacturations",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Ordre Facturation",
+        "createOrEditLabel": "Créer ou éditer un Ordre Facturation",
+        "notFound": "Aucun Ordre Facturation trouvé"
+      },
+      "created": "Un nouveau Ordre Facturation a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Ordre Facturation avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Ordre Facturation avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Ordre Facturation {{ id }} ?"
+      },
+      "detail": {
+        "title": "Ordre Facturation"
+      },
+      "id": "ID",
+      "date": "Date",
+      "bonDeCommande": "Bon De Commande",
+      "facture": "Facture",
+      "workOrder": "Work Order"
+    }
+  }
+}

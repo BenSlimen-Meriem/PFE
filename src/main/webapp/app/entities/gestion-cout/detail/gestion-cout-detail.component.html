@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (gestionCout(); as gestionCoutRef) {
+      <div>
+        <h2 data-cy="gestionCoutDetailsHeading"><span jhiTranslate="pfeApp.gestionCout.detail.title">Gestion Cout</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ gestionCoutRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.gestionCout.time">Time</span></dt>
+          <dd>
+            <span>{{ gestionCoutRef.time }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.gestionCout.cout">Cout</span></dt>
+          <dd>
+            <span>{{ gestionCoutRef.cout }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.gestionCout.planificateur">Planificateur</span></dt>
+          <dd>
+            @if (gestionCout()!.planificateur) {
+              <div>
+                <a [routerLink]="['/planificateur', gestionCout()!.planificateur?.id, 'view']">{{ gestionCoutRef.planificateur?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/gestion-cout', gestionCoutRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

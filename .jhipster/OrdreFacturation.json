@@ -1,0 +1,33 @@
+{
+  "annotations": {
+    "changelogDate": "20241231093840"
+  },
+  "applications": ["pfe"],
+  "fields": [
+    {
+      "fieldName": "date",
+      "fieldType": "LocalDate",
+      "fieldValidateRules": ["required"]
+    },
+    {
+      "fieldName": "bonDeCommande",
+      "fieldType": "String"
+    },
+    {
+      "fieldName": "facture",
+      "fieldType": "String"
+    }
+  ],
+  "name": "OrdreFacturation",
+  "relationships": [
+    {
+      "otherEntityName": "workOrder",
+      "otherEntityRelationshipName": "ordreFacturation",
+      "relationshipName": "workOrder",
+      "relationshipSide": "left",
+      "relationshipType": "many-to-one"
+    }
+  ],
+  "searchEngine": "no",
+  "service": "serviceClass"
+}

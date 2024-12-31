@@ -1,0 +1,121 @@
+<div>
+  <h2 id="page-heading" data-cy="OrdreFacturationHeading">
+    <span jhiTranslate="pfeApp.ordreFacturation.home.title">OrdreFacturations</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="pfeApp.ordreFacturation.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-ordre-facturation"
+        [routerLink]="['/ordre-facturation/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="pfeApp.ordreFacturation.home.createLabel">Créer un nouveau Ordre Facturation</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (ordreFacturations().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="pfeApp.ordreFacturation.home.notFound">Aucun Ordre Facturation trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="date">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.ordreFacturation.date">Date</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="bonDeCommande">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.ordreFacturation.bonDeCommande">Bon De Commande</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="facture">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.ordreFacturation.facture">Facture</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="workOrder.id">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.ordreFacturation.workOrder">Work Order</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ordreFacturation of ordreFacturations(); track trackId(ordreFacturation)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/ordre-facturation', ordreFacturation.id, 'view']">{{ ordreFacturation.id }}</a>
+              </td>
+              <td>{{ ordreFacturation.date | formatMediumDate }}</td>
+              <td>{{ ordreFacturation.bonDeCommande }}</td>
+              <td>{{ ordreFacturation.facture }}</td>
+              <td>
+                @if (ordreFacturation.workOrder) {
+                  <div>
+                    <a [routerLink]="['/work-order', ordreFacturation.workOrder.id, 'view']">{{ ordreFacturation.workOrder.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/ordre-facturation', ordreFacturation.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/ordre-facturation', ordreFacturation.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(ordreFacturation)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

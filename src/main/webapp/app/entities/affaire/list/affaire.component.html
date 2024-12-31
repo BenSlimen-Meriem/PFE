@@ -1,0 +1,105 @@
+<div>
+  <h2 id="page-heading" data-cy="AffaireHeading">
+    <span jhiTranslate="pfeApp.affaire.home.title">Affaires</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="pfeApp.affaire.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-affaire"
+        [routerLink]="['/affaire/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="pfeApp.affaire.home.createLabel">Créer un nouveau Affaire</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (affaires().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="pfeApp.affaire.home.notFound">Aucun Affaire trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="reference">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.affaire.reference">Reference</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="description">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.affaire.description">Description</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="client.id">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.affaire.client">Client</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (affaire of affaires(); track trackId(affaire)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/affaire', affaire.id, 'view']">{{ affaire.id }}</a>
+              </td>
+              <td>{{ affaire.reference }}</td>
+              <td>{{ affaire.description }}</td>
+              <td>
+                @if (affaire.client) {
+                  <div>
+                    <a [routerLink]="['/client', affaire.client.id, 'view']">{{ affaire.client.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/affaire', affaire.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/affaire', affaire.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(affaire)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

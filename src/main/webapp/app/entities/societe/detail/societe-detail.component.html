@@ -1,0 +1,74 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (societe(); as societeRef) {
+      <div>
+        <h2 data-cy="societeDetailsHeading"><span jhiTranslate="pfeApp.societe.detail.title">Societe</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ societeRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.societe.raisonSociale">Raison Sociale</span></dt>
+          <dd>
+            <span>{{ societeRef.raisonSociale }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.societe.identifiantUnique">Identifiant Unique</span></dt>
+          <dd>
+            <span>{{ societeRef.identifiantUnique }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.societe.registreCommerce">Registre Commerce</span></dt>
+          <dd>
+            <span>{{ societeRef.registreCommerce }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.societe.codeArticle">Code Article</span></dt>
+          <dd>
+            <span>{{ societeRef.codeArticle }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.societe.adresse">Adresse</span></dt>
+          <dd>
+            <span>{{ societeRef.adresse }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.societe.codePostal">Code Postal</span></dt>
+          <dd>
+            <span>{{ societeRef.codePostal }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.societe.pays">Pays</span></dt>
+          <dd>
+            <span>{{ societeRef.pays }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.societe.telephone">Telephone</span></dt>
+          <dd>
+            <span>{{ societeRef.telephone }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.societe.fax">Fax</span></dt>
+          <dd>
+            <span>{{ societeRef.fax }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.societe.email">Email</span></dt>
+          <dd>
+            <span>{{ societeRef.email }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.societe.agence">Agence</span></dt>
+          <dd>
+            <span>{{ societeRef.agence }}</span>
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/societe', societeRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

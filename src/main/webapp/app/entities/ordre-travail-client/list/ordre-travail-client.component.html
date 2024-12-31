@@ -1,0 +1,113 @@
+<div>
+  <h2 id="page-heading" data-cy="OrdreTravailClientHeading">
+    <span jhiTranslate="pfeApp.ordreTravailClient.home.title">OrdreTravailClients</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="pfeApp.ordreTravailClient.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-ordre-travail-client"
+        [routerLink]="['/ordre-travail-client/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="pfeApp.ordreTravailClient.home.createLabel">Créer un nouveau Ordre Travail Client</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (ordreTravailClients().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="pfeApp.ordreTravailClient.home.notFound">Aucun Ordre Travail Client trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="fraisSession">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.ordreTravailClient.fraisSession">Frais Session</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="article">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.ordreTravailClient.article">Article</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="workOrder.id">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.ordreTravailClient.workOrder">Work Order</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (ordreTravailClient of ordreTravailClients(); track trackId(ordreTravailClient)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/ordre-travail-client', ordreTravailClient.id, 'view']">{{ ordreTravailClient.id }}</a>
+              </td>
+              <td>{{ ordreTravailClient.fraisSession }}</td>
+              <td>{{ ordreTravailClient.article }}</td>
+              <td>
+                @if (ordreTravailClient.workOrder) {
+                  <div>
+                    <a [routerLink]="['/work-order', ordreTravailClient.workOrder.id, 'view']">{{ ordreTravailClient.workOrder.id }}</a>
+                  </div>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a
+                    [routerLink]="['/ordre-travail-client', ordreTravailClient.id, 'view']"
+                    class="btn btn-info btn-sm"
+                    data-cy="entityDetailsButton"
+                  >
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a
+                    [routerLink]="['/ordre-travail-client', ordreTravailClient.id, 'edit']"
+                    class="btn btn-primary btn-sm"
+                    data-cy="entityEditButton"
+                  >
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(ordreTravailClient)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

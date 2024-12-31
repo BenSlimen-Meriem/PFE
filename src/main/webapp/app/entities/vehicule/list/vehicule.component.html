@@ -1,0 +1,136 @@
+<div>
+  <h2 id="page-heading" data-cy="VehiculeHeading">
+    <span jhiTranslate="pfeApp.vehicule.home.title">Vehicules</span>
+
+    <div class="d-flex justify-content-end">
+      <button class="btn btn-info me-2" (click)="load()" [disabled]="isLoading">
+        <fa-icon icon="sync" [animation]="isLoading ? 'spin' : undefined"></fa-icon>
+        <span jhiTranslate="pfeApp.vehicule.home.refreshListLabel">Actualiser la liste</span>
+      </button>
+
+      <button
+        id="jh-create-entity"
+        data-cy="entityCreateButton"
+        class="btn btn-primary jh-create-entity create-vehicule"
+        [routerLink]="['/vehicule/new']"
+      >
+        <fa-icon icon="plus"></fa-icon>
+        <span jhiTranslate="pfeApp.vehicule.home.createLabel">Créer un nouveau Vehicule</span>
+      </button>
+    </div>
+  </h2>
+
+  <jhi-alert-error></jhi-alert-error>
+
+  <jhi-alert></jhi-alert>
+
+  @if (vehicules().length === 0) {
+    <div class="alert alert-warning" id="no-result">
+      <span jhiTranslate="pfeApp.vehicule.home.notFound">Aucun Vehicule trouvé</span>
+    </div>
+  } @else {
+    <div class="table-responsive table-entities" id="entities">
+      <table class="table table-striped" aria-describedby="page-heading">
+        <thead>
+          <tr jhiSort [(sortState)]="sortState" (sortChange)="navigateToWithComponentValues($event)">
+            <th scope="col" jhiSortBy="id">
+              <div class="d-flex">
+                <span jhiTranslate="global.field.id">ID</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="model">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.vehicule.model">Model</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numeroCarteGrise">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.vehicule.numeroCarteGrise">Numero Carte Grise</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="numSerie">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.vehicule.numSerie">Num Serie</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="statut">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.vehicule.statut">Statut</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="type">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.vehicule.type">Type</span>
+
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col" jhiSortBy="workOrder.id">
+              <div class="d-flex">
+                <span jhiTranslate="pfeApp.vehicule.workOrder">Work Order</span>
+                <fa-icon class="p-1" icon="sort"></fa-icon>
+              </div>
+            </th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (vehicule of vehicules(); track trackId(vehicule)) {
+            <tr data-cy="entityTable">
+              <td>
+                <a [routerLink]="['/vehicule', vehicule.id, 'view']">{{ vehicule.id }}</a>
+              </td>
+              <td>{{ vehicule.model }}</td>
+              <td>{{ vehicule.numeroCarteGrise }}</td>
+              <td>{{ vehicule.numSerie }}</td>
+              <td [jhiTranslate]="'pfeApp.StatutVehicule.' + (vehicule.statut ?? 'null')">
+                {{
+                  { null: '', DISPONIBLE: 'DISPONIBLE', EN_MISSION: 'EN_MISSION', EN_MAINTENANCE: 'EN_MAINTENANCE' }[
+                    vehicule.statut ?? 'null'
+                  ]
+                }}
+              </td>
+              <td>{{ vehicule.type }}</td>
+              <td>
+                @for (workOrder of vehicule.workOrders; track $index; let last = $last) {
+                  <span>
+                    <a class="form-control-static" [routerLink]="['/work-order', workOrder.id, 'view']">{{ workOrder.id }}</a
+                    >{{ last ? '' : ', ' }}
+                  </span>
+                }
+              </td>
+              <td class="text-end">
+                <div class="btn-group">
+                  <a [routerLink]="['/vehicule', vehicule.id, 'view']" class="btn btn-info btn-sm" data-cy="entityDetailsButton">
+                    <fa-icon icon="eye"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.view">Voir</span>
+                  </a>
+
+                  <a [routerLink]="['/vehicule', vehicule.id, 'edit']" class="btn btn-primary btn-sm" data-cy="entityEditButton">
+                    <fa-icon icon="pencil-alt"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Editer</span>
+                  </a>
+
+                  <button type="submit" (click)="delete(vehicule)" class="btn btn-danger btn-sm" data-cy="entityDeleteButton">
+                    <fa-icon icon="times"></fa-icon>
+                    <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Supprimer</span>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+</div>

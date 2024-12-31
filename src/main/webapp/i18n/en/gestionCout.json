@@ -1,0 +1,26 @@
+{
+  "pfeApp": {
+    "gestionCout": {
+      "home": {
+        "title": "Gestion Couts",
+        "refreshListLabel": "Refresh list",
+        "createLabel": "Create a new Gestion Cout",
+        "createOrEditLabel": "Create or edit a Gestion Cout",
+        "notFound": "No Gestion Couts found"
+      },
+      "created": "A new Gestion Cout is created with identifier {{ param }}",
+      "updated": "A Gestion Cout is updated with identifier {{ param }}",
+      "deleted": "A Gestion Cout is deleted with identifier {{ param }}",
+      "delete": {
+        "question": "Are you sure you want to delete Gestion Cout {{ id }}?"
+      },
+      "detail": {
+        "title": "Gestion Cout"
+      },
+      "id": "ID",
+      "time": "Time",
+      "cout": "Cout",
+      "planificateur": "Planificateur"
+    }
+  }
+}

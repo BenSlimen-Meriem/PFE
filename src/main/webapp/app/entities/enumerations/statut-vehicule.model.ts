@@ -1,0 +1,7 @@
+export enum StatutVehicule {
+  DISPONIBLE = 'DISPONIBLE',
+
+  EN_MISSION = 'EN_MISSION',
+
+  EN_MAINTENANCE = 'EN_MAINTENANCE',
+}

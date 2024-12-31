@@ -1,0 +1,26 @@
+{
+  "pfeApp": {
+    "ordreTravailClient": {
+      "home": {
+        "title": "OrdreTravailClients",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Ordre Travail Client",
+        "createOrEditLabel": "Créer ou éditer un Ordre Travail Client",
+        "notFound": "Aucun Ordre Travail Client trouvé"
+      },
+      "created": "Un nouveau Ordre Travail Client a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Ordre Travail Client avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Ordre Travail Client avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Ordre Travail Client {{ id }} ?"
+      },
+      "detail": {
+        "title": "Ordre Travail Client"
+      },
+      "id": "ID",
+      "fraisSession": "Frais Session",
+      "article": "Article",
+      "workOrder": "Work Order"
+    }
+  }
+}

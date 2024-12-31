@@ -1,0 +1,28 @@
+{
+  "pfeApp": {
+    "planificateur": {
+      "home": {
+        "title": "Planificateurs",
+        "refreshListLabel": "Actualiser la liste",
+        "createLabel": "Créer un nouveau Planificateur",
+        "createOrEditLabel": "Créer ou éditer un Planificateur",
+        "notFound": "Aucun Planificateur trouvé"
+      },
+      "created": "Un nouveau Planificateur a été créé avec l'identifiant {{ param }}",
+      "updated": "Le Planificateur avec l'identifiant {{ param }} a été mis à jour",
+      "deleted": "Le Planificateur avec l'identifiant {{ param }} a été supprimé",
+      "delete": {
+        "question": "Êtes-vous certain de vouloir supprimer le Planificateur {{ id }} ?"
+      },
+      "detail": {
+        "title": "Planificateur"
+      },
+      "id": "ID",
+      "nom": "Nom",
+      "niveauExpertise": "Niveau Expertise",
+      "disponibilite": "Disponibilite",
+      "employee": "Employee",
+      "gestionCout": "Gestion Cout"
+    }
+  }
+}

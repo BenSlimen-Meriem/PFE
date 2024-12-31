@@ -1,0 +1,129 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (workOrder(); as workOrderRef) {
+      <div>
+        <h2 data-cy="workOrderDetailsHeading"><span jhiTranslate="pfeApp.workOrder.detail.title">Work Order</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ workOrderRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.demandeur">Demandeur</span></dt>
+          <dd>
+            <span>{{ workOrderRef.demandeur }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.nature">Nature</span></dt>
+          <dd>
+            <span>{{ workOrderRef.nature }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.motifDescription">Motif Description</span></dt>
+          <dd>
+            <span>{{ workOrderRef.motifDescription }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.dateHeureDebutPrevisionnelle">Date Heure Debut Previsionnelle</span></dt>
+          <dd>
+            <span>{{ workOrderRef.dateHeureDebutPrevisionnelle | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.dateHeureFinPrevisionnelle">Date Heure Fin Previsionnelle</span></dt>
+          <dd>
+            <span>{{ workOrderRef.dateHeureFinPrevisionnelle | formatMediumDatetime }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.vehicule">Vehicule</span></dt>
+          <dd>
+            <span>{{ workOrderRef.vehicule }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.materielUtilise">Materiel Utilise</span></dt>
+          <dd>
+            <span>{{ workOrderRef.materielUtilise }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.article">Article</span></dt>
+          <dd>
+            <span>{{ workOrderRef.article }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.membreMission">Membre Mission</span></dt>
+          <dd>
+            <span>{{ workOrderRef.membreMission }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.responsableMission">Responsable Mission</span></dt>
+          <dd>
+            <span>{{ workOrderRef.responsableMission }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.statut">Statut</span></dt>
+          <dd>
+            <span [jhiTranslate]="'pfeApp.StatutMission.' + (workOrderRef.statut ?? 'null')">{{
+              { null: '', BROUILLON: 'BROUILLON', EN_COURS: 'EN_COURS', TERMINE: 'TERMINE', ANNULE: 'ANNULE' }[
+                workOrderRef.statut ?? 'null'
+              ]
+            }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.affaire">Affaire</span></dt>
+          <dd>
+            @if (workOrder()!.affaire) {
+              <div>
+                <a [routerLink]="['/affaire', workOrder()!.affaire?.id, 'view']">{{ workOrderRef.affaire?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.motif">Motif</span></dt>
+          <dd>
+            @if (workOrder()!.motif) {
+              <div>
+                <a [routerLink]="['/motif', workOrder()!.motif?.id, 'view']">{{ workOrderRef.motif?.id }}</a>
+              </div>
+            }
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.employee">Employee</span></dt>
+          <dd>
+            @for (employee of workOrderRef.employees; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/employee', employee.id, 'view']">{{ employee?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.article">Article</span></dt>
+          <dd>
+            @for (article of workOrderRef.articles; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/article', article.id, 'view']">{{ article?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.vehicule">Vehicule</span></dt>
+          <dd>
+            @for (vehicule of workOrderRef.vehicules; track $index; let last = $last) {
+              <span>
+                <a [routerLink]="['/vehicule', vehicule.id, 'view']">{{ vehicule?.id }}</a
+                >{{ last ? '' : ', ' }}
+              </span>
+            }
+          </dd>
+          <dt><span jhiTranslate="pfeApp.workOrder.site">Site</span></dt>
+          <dd>
+            @if (workOrder()!.site) {
+              <div>
+                <a [routerLink]="['/site', workOrder()!.site?.id, 'view']">{{ workOrderRef.site?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/work-order', workOrderRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>

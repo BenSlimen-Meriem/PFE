@@ -1,0 +1,142 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    <form name="editForm" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+      <h2 id="jhi-societe-heading" data-cy="SocieteCreateUpdateHeading" jhiTranslate="pfeApp.societe.home.createOrEditLabel">
+        Créer ou éditer un Societe
+      </h2>
+
+      <div>
+        <jhi-alert-error></jhi-alert-error>
+
+        @if (editForm.controls.id.value !== null) {
+          <div class="mb-3">
+            <label class="form-label" for="field_id" jhiTranslate="pfeApp.societe.id">ID</label>
+            <input type="number" class="form-control" name="id" id="field_id" data-cy="id" formControlName="id" [readonly]="true" />
+          </div>
+        }
+
+        @let raisonSocialeRef = editForm.get('raisonSociale')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_raisonSociale" jhiTranslate="pfeApp.societe.raisonSociale">Raison Sociale</label>
+          <input
+            type="text"
+            class="form-control"
+            name="raisonSociale"
+            id="field_raisonSociale"
+            data-cy="raisonSociale"
+            formControlName="raisonSociale"
+          />
+          @if (raisonSocialeRef.invalid && (raisonSocialeRef.dirty || raisonSocialeRef.touched)) {
+            <div>
+              @if (editForm.get('raisonSociale')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        @let identifiantUniqueRef = editForm.get('identifiantUnique')!;
+        <div class="mb-3">
+          <label class="form-label" for="field_identifiantUnique" jhiTranslate="pfeApp.societe.identifiantUnique">Identifiant Unique</label>
+          <input
+            type="text"
+            class="form-control"
+            name="identifiantUnique"
+            id="field_identifiantUnique"
+            data-cy="identifiantUnique"
+            formControlName="identifiantUnique"
+          />
+          @if (identifiantUniqueRef.invalid && (identifiantUniqueRef.dirty || identifiantUniqueRef.touched)) {
+            <div>
+              @if (editForm.get('identifiantUnique')?.errors?.required) {
+                <small class="form-text text-danger" jhiTranslate="entity.validation.required">Ce champ est obligatoire.</small>
+              }
+            </div>
+          }
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_registreCommerce" jhiTranslate="pfeApp.societe.registreCommerce">Registre Commerce</label>
+          <input
+            type="text"
+            class="form-control"
+            name="registreCommerce"
+            id="field_registreCommerce"
+            data-cy="registreCommerce"
+            formControlName="registreCommerce"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_codeArticle" jhiTranslate="pfeApp.societe.codeArticle">Code Article</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codeArticle"
+            id="field_codeArticle"
+            data-cy="codeArticle"
+            formControlName="codeArticle"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_adresse" jhiTranslate="pfeApp.societe.adresse">Adresse</label>
+          <input type="text" class="form-control" name="adresse" id="field_adresse" data-cy="adresse" formControlName="adresse" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_codePostal" jhiTranslate="pfeApp.societe.codePostal">Code Postal</label>
+          <input
+            type="text"
+            class="form-control"
+            name="codePostal"
+            id="field_codePostal"
+            data-cy="codePostal"
+            formControlName="codePostal"
+          />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_pays" jhiTranslate="pfeApp.societe.pays">Pays</label>
+          <input type="text" class="form-control" name="pays" id="field_pays" data-cy="pays" formControlName="pays" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_telephone" jhiTranslate="pfeApp.societe.telephone">Telephone</label>
+          <input type="text" class="form-control" name="telephone" id="field_telephone" data-cy="telephone" formControlName="telephone" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_fax" jhiTranslate="pfeApp.societe.fax">Fax</label>
+          <input type="text" class="form-control" name="fax" id="field_fax" data-cy="fax" formControlName="fax" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_email" jhiTranslate="pfeApp.societe.email">Email</label>
+          <input type="text" class="form-control" name="email" id="field_email" data-cy="email" formControlName="email" />
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label" for="field_agence" jhiTranslate="pfeApp.societe.agence">Agence</label>
+          <input type="text" class="form-control" name="agence" id="field_agence" data-cy="agence" formControlName="agence" />
+        </div>
+      </div>
+
+      <div>
+        <button type="button" id="cancel-save" data-cy="entityCreateCancelButton" class="btn btn-secondary" (click)="previousState()">
+          <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Annuler</span>
+        </button>
+
+        <button
+          type="submit"
+          id="save-entity"
+          data-cy="entityCreateSaveButton"
+          [disabled]="editForm.invalid || isSaving"
+          class="btn btn-primary"
+        >
+          <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Sauvegarder</span>
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

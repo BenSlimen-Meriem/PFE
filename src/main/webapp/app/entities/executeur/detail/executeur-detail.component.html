@@ -1,0 +1,50 @@
+<div class="d-flex justify-content-center">
+  <div class="col-8">
+    @if (executeur(); as executeurRef) {
+      <div>
+        <h2 data-cy="executeurDetailsHeading"><span jhiTranslate="pfeApp.executeur.detail.title">Executeur</span></h2>
+
+        <hr />
+
+        <jhi-alert-error></jhi-alert-error>
+
+        <jhi-alert></jhi-alert>
+
+        <dl class="row-md jh-entity-details">
+          <dt><span jhiTranslate="global.field.id">ID</span></dt>
+          <dd>
+            <span>{{ executeurRef.id }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.executeur.nom">Nom</span></dt>
+          <dd>
+            <span>{{ executeurRef.nom }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.executeur.niveauExpertise">Niveau Expertise</span></dt>
+          <dd>
+            <span>{{ executeurRef.niveauExpertise }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.executeur.disponibilite">Disponibilite</span></dt>
+          <dd>
+            <span>{{ executeurRef.disponibilite }}</span>
+          </dd>
+          <dt><span jhiTranslate="pfeApp.executeur.employee">Employee</span></dt>
+          <dd>
+            @if (executeur()!.employee) {
+              <div>
+                <a [routerLink]="['/employee', executeur()!.employee?.id, 'view']">{{ executeurRef.employee?.id }}</a>
+              </div>
+            }
+          </dd>
+        </dl>
+
+        <button type="submit" (click)="previousState()" class="btn btn-info" data-cy="entityDetailsBackButton">
+          <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Retour</span>
+        </button>
+
+        <button type="button" [routerLink]="['/executeur', executeurRef.id, 'edit']" class="btn btn-primary">
+          <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Editer</span>
+        </button>
+      </div>
+    }
+  </div>
+</div>
